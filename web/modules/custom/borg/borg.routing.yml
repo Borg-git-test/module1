@@ -1,0 +1,6 @@
+borg.cats:
+  path: '/borg/cats'
+  defaults:
+    _controller: '\Drupal\borg\Controller\MyController::myNewPage'
+  requirements:
+    _permission: 'access content'
