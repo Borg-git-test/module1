@@ -4,3 +4,11 @@ borg.cats:
     _controller: '\Drupal\borg\Controller\MyController::myNewPage'
   requirements:
     _permission: 'access content'
+
+borg.form:
+  path: '/borg/form'
+  defaults:
+    _form: '\Drupal\borg\Form\FirstForm'
+    _title: 'Cat Form'
+  requirements:
+    _permission: 'access content'

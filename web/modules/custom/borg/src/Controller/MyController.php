@@ -17,7 +17,8 @@ class MyController extends ControllerBase {
    */
   public function myNewPage() {
     return [
-      '#markup' => "Hello! You can add here a photo of your cat.",
+      '#type' => 'markup',
+      '#markup' => "<p>Hello! You can add here a photo of your cat.</p>",
     ];
   }
 
