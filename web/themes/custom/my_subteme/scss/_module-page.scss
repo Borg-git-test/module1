@@ -1,0 +1,21 @@
+
+.cats-module-nav {
+  .navbar-header {
+    width: 100%;
+  }
+  .region-navigation {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.cats-module {
+  background-color: #9ea0a1;
+  border-radius: 5px;
+  min-height: 100px;
+  max-width: 1140px;
+  padding-block: 10px;
+  .cats-module-section {
+    color: white;
+  }
+}
