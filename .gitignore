@@ -21,3 +21,5 @@
 /.env
 
 /.docksal
+
+/web/sites/default/services.yml

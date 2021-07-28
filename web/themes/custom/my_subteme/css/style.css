@@ -1,4 +1,8 @@
-/**
- * If using a CSS pre-processor, tell it to overwrite this file. If not, place
- * your custom CSS modifications here.
- */
+.cats-module {
+  background-color: #9ea0a1;
+  border-radius: 5px;
+}
+.cats-module .cats-module-section {
+  color: white;
+}
+/*# sourceMappingURL=style.css.map */
