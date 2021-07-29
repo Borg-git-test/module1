@@ -1,7 +1,7 @@
-.cats-module-nav .navbar-header {
+.navbar-header {
   width: 100%;
 }
-.cats-module-nav .region-navigation {
+.navbar-header .region-navigation {
   display: flex;
   justify-content: space-between;
 }
@@ -15,5 +15,36 @@
 }
 .cats-module .cats-module-section {
   color: white;
+}
+.cats-module .cats-module-section .text {
+  font-size: 32px;
+  text-align: center;
+  background-color: #3a3a3a;
+  border-radius: 10px;
+}
+.cats-module .cats-module-section .borg-first-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.cats-module .cats-module-section .borg-first-form .form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cats-module .cats-module-section .borg-first-form .control-label {
+  font-size: 20px;
+}
+.cats-module .cats-module-section .borg-first-form .control-label:after {
+  background-size: 7px 7px;
+  background-repeat: no-repeat;
+  margin-left: 3px;
+}
+.cats-module .cats-module-section .borg-first-form .button {
+  outline: 0;
+  border: none;
+  padding: 10px 45px;
+  font-size: 18px;
 }
 /*# sourceMappingURL=style.css.map */

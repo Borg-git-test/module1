@@ -22,6 +22,8 @@ class FirstForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Your cat’s name:'),
       '#description' => $this->t("minimum symbols: 2 maximum symbols: 32"),
+      '#maxlength' => 32,
+      '#required' => TRUE,
     ];
 
     $form['submit'] = [

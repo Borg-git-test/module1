@@ -1,13 +1,5 @@
 
-.cats-module-nav {
-  .navbar-header {
-    width: 100%;
-  }
-  .region-navigation {
-    display: flex;
-    justify-content: space-between;
-  }
-}
+
 
 .cats-module {
   background-color: #9ea0a1;
@@ -17,5 +9,36 @@
   padding-block: 10px;
   .cats-module-section {
     color: white;
+    .text {
+      font-size: 32px;
+      text-align: center;
+      background-color: #3a3a3a;
+      border-radius: 10px;
+    }
+    .borg-first-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      .form-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .control-label {
+        font-size: 20px;
+        &:after {
+          background-size: 7px 7px;
+          background-repeat: no-repeat;
+          margin-left: 3px;
+        }
+      }
+      .button {
+        outline: 0;
+        border: none;
+        padding: 10px 45px;
+        font-size: 18px;
+      }
+    }
   }
 }
