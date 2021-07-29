@@ -23,3 +23,4 @@
 /.docksal
 
 /web/sites/default/services.yml
+/web/modules/custom/borg/errors

@@ -12,3 +12,4 @@ borg.form:
     _title: 'Cat Form'
   requirements:
     _permission: 'access content'
+
