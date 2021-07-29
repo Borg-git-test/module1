@@ -10,7 +10,6 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @package Drupal\borg\Form
  */
-
 class FirstForm extends FormBase {
 
   public function getFormId() {
@@ -22,7 +21,7 @@ class FirstForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Your cat’s name:'),
       '#description' => $this->t("minimum symbols: 2 maximum symbols: 32"),
-      '#maxlength' => 32,
+//      '#maxlength' => 32,
       '#required' => TRUE,
     ];
 
@@ -33,8 +32,30 @@ class FirstForm extends FormBase {
     return $form;
   }
 
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    $min = 2;
+    $max = 32;
+    $current = strlen($form_state->getValue('input'));
+    if ($max <= $current) {
+      $this->messenger()->addError($this->t(
+        'maximum symbols: 32'
+      ));
+    }
+    elseif ($current <= $min) {
+      $this->messenger()->addError($this->t(
+        'minimum symbols: 2'
+      ));
+    }
+  }
+
+
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->messenger()->addStatus($this->t('Your cat name is @name', ['@name' => $form_state->getValue('input')]));
+    $this->messenger()->addStatus(
+      $this->t(
+        'Your cat name is @name',
+        ['@name' => $form_state->getValue('input')]
+      )
+    );
   }
 
 }
