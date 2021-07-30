@@ -21,7 +21,6 @@ class FirstForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Your cat’s name:'),
       '#description' => $this->t("minimum symbols: 2 maximum symbols: 32"),
-//      '#maxlength' => 32,
       '#required' => TRUE,
     ];
 
@@ -37,14 +36,10 @@ class FirstForm extends FormBase {
     $max = 32;
     $current = strlen($form_state->getValue('input'));
     if ($max <= $current) {
-      $this->messenger()->addError($this->t(
-        'maximum symbols: 32'
-      ));
+      $form_state->setErrorByName('input', $this->t('maximum symbols: 32'));
     }
     elseif ($current <= $min) {
-      $this->messenger()->addError($this->t(
-        'minimum symbols: 2'
-      ));
+      $form_state->setErrorByName('input', $this->t('minimum symbols: 2'));
     }
   }
 
@@ -57,5 +52,4 @@ class FirstForm extends FormBase {
       )
     );
   }
-
 }
