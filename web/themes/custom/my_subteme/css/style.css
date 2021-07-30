@@ -28,6 +28,22 @@
   align-items: center;
   position: relative;
 }
+.cats-module .cats-module-section .borg-first-form .message {
+  width: 100%;
+  text-align: center;
+}
+.cats-module .cats-module-section .borg-first-form .message .invalid_message, .cats-module .cats-module-section .borg-first-form .message .valid_message {
+  background-color: red;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.cats-module .cats-module-section .borg-first-form .message .valid_message {
+  background-color: green;
+  text-transform: inherit;
+}
 .cats-module .cats-module-section .borg-first-form .form-item {
   display: flex;
   flex-direction: column;
