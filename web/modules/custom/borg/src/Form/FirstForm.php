@@ -6,7 +6,8 @@ use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\ReplaceCommand;
+use \Drupal\Core\Ajax\CssCommand;
+
 
 /**
  * Class MyForm
@@ -24,12 +25,27 @@ class FirstForm extends FormBase {
       '#type' => 'markup',
       '#markup' => '<div class="message"></div>',
     ];
-
     $form['input'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Your cat’s name:'),
+      '#placeholder' => 'name',
       '#description' => $this->t("minimum symbols: 2 maximum symbols: 32"),
       '#required' => TRUE,
+    ];
+
+    $form['email'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Your email:'),
+      '#placeholder' => 'email_mail@mail.com',
+      '#required' => TRUE,
+      '#ajax' => [
+        'callback' => '::EmailValidate',
+        'event' => 'keyup',
+      ],
+    ];
+    $form['error_message'] = [
+      '#type' => 'markup',
+      '#markup' => '<div class="error_message"></div>',
     ];
 
     $form['submit'] = [
@@ -37,6 +53,7 @@ class FirstForm extends FormBase {
       '#value' => $this->t('Add cat'),
       '#ajax' => [
         'callback' => '::addMessageAjax',
+        'event' => 'click',
       ],
     ];
     return $form;
@@ -44,35 +61,68 @@ class FirstForm extends FormBase {
 
   public function addMessageAjax(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
-
     $min = 2;
     $max = 32;
     $current = strlen($form_state->getValue('input'));
+    $mail = $form_state->getValue('email');
+    $email_exp = '/^[A-Za-z._-]+@[A-Za-z.-]+\.[A-Za-z]{2,4}$/';
+
+  if (!preg_match($email_exp, $mail)) {
+    $response->addCommand(
+      new HtmlCommand(
+        '.message',
+        '<div class="invalid_message">' . $this->t('Your email invalid') . '</div>'));
+  }
+  else {
     if ($max < $current) {
       $response->addCommand(
         new HtmlCommand(
           '.message',
-          '<div class="invalid_message">' . $this->t('maximum symbols: 32') . '</div>'
-        )
-      );
+          '<div class="invalid_message">' . $this->t('maximum symbols: 32') . '</div>'));
     }
     elseif ($current < $min) {
       $response->addCommand(
         new HtmlCommand(
           '.message',
-          '<div class="invalid_message">' . $this->t('minimum symbols: 2') . '</div>'
-        )
-      );
+          '<div class="invalid_message">' . $this->t('minimum symbols: 2') . '</div>'));
     }
     else {
       $response->addCommand(
         new HtmlCommand(
           '.message',
           '<div class="valid_message">' . $this->t(
-                  'Your cat name is @name',
-                  ['@name' => $form_state->getValue('input')]
-          ) . '</div>')
-      );
+            'Your cat name is @name',
+            ['@name' => $form_state->getValue('input')]) . '</div>'));
+    }
+  }
+    return $response;
+  }
+
+  public function EmailValidate(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+
+    $mail = $form_state->getValue('email');
+    $email_exp = '/^[A-Za-z._@-]{0,100}$/';
+
+    $selector = '.form-email';
+    $cssinvalid = [
+      'box-shadow' => '0 0 10px 1px red',
+    ];
+    $cssvalid = [
+      'box-shadow' => 'inherit',
+    ];
+
+    if (!preg_match($email_exp, $mail)) {
+      $response->addCommand(new CssCommand($selector, $cssinvalid));
+      $response->addCommand(new HtmlCommand(
+        '.error_message',
+        '<div class="invalid_form_message">' . $this->t('invalid symbol') . '</div>'));
+    }
+    else {
+      $response->addCommand(new CssCommand($selector, $cssvalid));
+      $response->addCommand(new HtmlCommand(
+        '.error_message',
+        '<div class="valid_form_message">' . '</div>'));
     }
     return $response;
   }
@@ -85,5 +135,6 @@ class FirstForm extends FormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
   }
+
 
 }

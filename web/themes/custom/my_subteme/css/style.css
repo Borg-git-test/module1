@@ -49,6 +49,27 @@
   flex-direction: column;
   align-items: center;
 }
+.cats-module .cats-module-section .borg-first-form .form-item-email .input-group-addon {
+  display: none;
+}
+.cats-module .cats-module-section .borg-first-form .form-item-email .form-email {
+  border-radius: 4px;
+}
+.cats-module .cats-module-section .borg-first-form .error_message {
+  position: relative;
+  width: 10%;
+  height: 0;
+}
+.cats-module .cats-module-section .borg-first-form .error_message .invalid_form_message {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 5px;
+  background-color: #3a3a3a;
+  border-radius: 4px;
+}
 .cats-module .cats-module-section .borg-first-form .control-label {
   font-size: 20px;
 }
