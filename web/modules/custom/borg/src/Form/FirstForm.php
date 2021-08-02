@@ -37,8 +37,6 @@ class FirstForm extends FormBase {
       '#value' => $this->t('Add cat'),
       '#ajax' => [
         'callback' => '::addMessageAjax',
-//        'validate' => 'validateForm',
-//        'wrapper' => 'buildForm',
       ],
     ];
     return $form;
@@ -57,7 +55,6 @@ class FirstForm extends FormBase {
           '<div class="invalid_message">' . $this->t('maximum symbols: 32') . '</div>'
         )
       );
-//      $form_state->setErrorByName('input', $this->t('maximum symbols: 32'));
     }
     elseif ($current < $min) {
       $response->addCommand(
@@ -66,7 +63,6 @@ class FirstForm extends FormBase {
           '<div class="invalid_message">' . $this->t('minimum symbols: 2') . '</div>'
         )
       );
-//      $form_state->setErrorByName('input', $this->t('minimum symbols: 2'));
     }
     else {
       $response->addCommand(
@@ -83,25 +79,11 @@ class FirstForm extends FormBase {
 
 
     public function validateForm(array &$form, FormStateInterface $form_state) {
-//    $min = 2;
-//    $max = 32;
-//    $current = strlen($form_state->getValue('input'));
-//    if ($max <= $current) {
-//      $form_state->setErrorByName('input', $this->t('maximum symbols: 32'));
-//    }
-//    elseif ($current <= $min) {
-//      $form_state->setErrorByName('input', $this->t('minimum symbols: 2'));
-//    }
       $form_state->clearErrors();
   }
 
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-//    $this->messenger()->addStatus(
-//      $this->t(
-//        'Your cat name is @name',
-//        ['@name' => $form_state->getValue('input')]
-//      )
-//    );
   }
+
 }
