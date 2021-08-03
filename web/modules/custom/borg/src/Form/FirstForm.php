@@ -6,7 +6,7 @@ use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
-use \Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\CssCommand;
 
 
 /**
@@ -48,6 +48,17 @@ class FirstForm extends FormBase {
       '#markup' => '<div class="error_message"></div>',
     ];
 
+    $form['image'] = [
+      '#type' => 'managed_file',
+      '#title' => $this->t('Your image:'),
+      '#upload_location' => 'public://images/',
+      '#upload_validators' => [
+        'file_validate_extensions' => ['png jpg jpeg'],
+        'file_validate_size' => [2097152],
+      ],
+      '#required' => TRUE,
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Add cat'),
@@ -60,6 +71,7 @@ class FirstForm extends FormBase {
   }
 
   public function addMessageAjax(array &$form, FormStateInterface $form_state) {
+    \Drupal::messenger()->deleteAll();
     $response = new AjaxResponse();
     $min = 2;
     $max = 32;
@@ -127,9 +139,7 @@ class FirstForm extends FormBase {
     return $response;
   }
 
-
-    public function validateForm(array &$form, FormStateInterface $form_state) {
-      $form_state->clearErrors();
+  public function validateForm(array &$form, FormStateInterface $form_state) {
   }
 
 

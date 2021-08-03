@@ -78,6 +78,29 @@
         padding: 10px 45px;
         font-size: 18px;
       }
+      .alert-danger {
+        span {
+          display: none;
+        }
+      }
+      .form-managed-file {
+        max-width: 450px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .form-file {
+          outline: 0;
+          max-width: 300px;
+          margin-inline: auto;
+        }
+        .messages--error {
+          background-color: #f2dede;
+          color: #a94442;
+          margin-bottom: 10px;
+          padding: 10px;
+          border-radius: 5px;
+        }
+      }
     }
   }
 }

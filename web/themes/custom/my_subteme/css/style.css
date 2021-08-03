@@ -84,4 +84,25 @@
   padding: 10px 45px;
   font-size: 18px;
 }
+.cats-module .cats-module-section .borg-first-form .alert-danger span {
+  display: none;
+}
+.cats-module .cats-module-section .borg-first-form .form-managed-file {
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cats-module .cats-module-section .borg-first-form .form-managed-file .form-file {
+  outline: 0;
+  max-width: 300px;
+  margin-inline: auto;
+}
+.cats-module .cats-module-section .borg-first-form .form-managed-file .messages--error {
+  background-color: #f2dede;
+  color: #a94442;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
 /*# sourceMappingURL=style.css.map */
