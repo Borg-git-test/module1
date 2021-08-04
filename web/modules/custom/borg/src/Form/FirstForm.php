@@ -7,6 +7,8 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Database\Database;
+use Drupal\file\Entity\File;
 
 
 /**
@@ -78,25 +80,19 @@ class FirstForm extends FormBase {
     $current = strlen($form_state->getValue('input'));
     $mail = $form_state->getValue('email');
     $email_exp = '/^[A-Za-z._-]+@[A-Za-z.-]+\.[A-Za-z]{2,4}$/';
+    $image = $form_state->getValue('image');
+    $fid = $form_state->getValue(['image', 0]);
 
-  if (!preg_match($email_exp, $mail)) {
-    $response->addCommand(
-      new HtmlCommand(
-        '.message',
-        '<div class="invalid_message">' . $this->t('Your email invalid') . '</div>'));
-  }
-  else {
-    if ($max < $current) {
+    $connect = Database::getConnection();
+
+    if (empty($image)) {
       $response->addCommand(
         new HtmlCommand(
           '.message',
-          '<div class="invalid_message">' . $this->t('maximum symbols: 32') . '</div>'));
-    }
-    elseif ($current < $min) {
-      $response->addCommand(
-        new HtmlCommand(
-          '.message',
-          '<div class="invalid_message">' . $this->t('minimum symbols: 2') . '</div>'));
+          '<div class="invalid_message">' . $this->t('Image field is empty')
+          . '</div>'
+        )
+      );
     }
     else {
       $response->addCommand(
@@ -104,9 +100,57 @@ class FirstForm extends FormBase {
           '.message',
           '<div class="valid_message">' . $this->t(
             'Your cat name is @name',
-            ['@name' => $form_state->getValue('input')]) . '</div>'));
+            ['@name' => $form_state->getValue('input')]
+          ) . '</div>'
+        )
+      );
+      if (!preg_match($email_exp, $mail)) {
+        $response->addCommand(
+          new HtmlCommand(
+            '.message',
+            '<div class="invalid_message">' . $this->t('Your email invalid')
+            . '</div>'
+          )
+        );
+      }
+      else {
+        if ($max < $current) {
+          $response->addCommand(
+            new HtmlCommand(
+              '.message',
+              '<div class="invalid_message">' . $this->t('maximum symbols: 32')
+              . '</div>'
+            )
+          );
+        }
+        elseif ($current < $min) {
+          $response->addCommand(
+            new HtmlCommand(
+              '.message',
+              '<div class="invalid_message">' . $this->t('minimum symbols: 2')
+              . '</div>'
+            )
+          );
+        }
+        else {
+          $response->addCommand(
+            new HtmlCommand(
+              '.message',
+              '<div class="valid_message">' . $this->t(
+                'Your cat name is @name',
+                ['@name' => $form_state->getValue('input')]
+              ) . '</div>'
+            )
+          );
+          $connect->insert('borg')->fields([
+            'cat_name' => $form_state->getValue('input'),
+            'email' => $form_state->getValue('email'),
+            'image' => $fid,
+            'time' => time(),
+          ])->execute();
+        }
+      }
     }
-  }
     return $response;
   }
 
@@ -139,12 +183,11 @@ class FirstForm extends FormBase {
     return $response;
   }
 
+
   public function validateForm(array &$form, FormStateInterface $form_state) {
   }
 
-
   public function submitForm(array &$form, FormStateInterface $form_state) {
   }
-
 
 }
