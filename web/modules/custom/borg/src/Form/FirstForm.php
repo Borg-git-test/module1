@@ -80,7 +80,6 @@ class FirstForm extends FormBase {
     $email_exp = '/^[A-Za-z._-]+@[A-Za-z.-]+\.[A-Za-z]{2,4}$/';
 
   if (!preg_match($email_exp, $mail)) {
-    $form_state->setErrorByName('email');
     $response->addCommand(
       new HtmlCommand(
         '.message',
@@ -88,14 +87,12 @@ class FirstForm extends FormBase {
   }
   else {
     if ($max < $current) {
-      $form_state->setErrorByName('input');
       $response->addCommand(
         new HtmlCommand(
           '.message',
           '<div class="invalid_message">' . $this->t('maximum symbols: 32') . '</div>'));
     }
     elseif ($current < $min) {
-      $form_state->setErrorByName('input');
       $response->addCommand(
         new HtmlCommand(
           '.message',
