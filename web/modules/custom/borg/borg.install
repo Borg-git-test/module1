@@ -1,0 +1,43 @@
+<?php
+
+function borg_schema() {
+  $schema['borg'] = [
+    'description' => 'Stores example person entries for demonstration purposes.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key ID.',
+      ],
+      'cat_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Cat name.',
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Email',
+      ],
+      'image' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Cat image',
+      ],
+      'time' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Time when user add this form",
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}
