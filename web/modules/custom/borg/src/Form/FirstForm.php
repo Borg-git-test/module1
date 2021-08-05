@@ -69,6 +69,10 @@ class FirstForm extends FormBase {
         'event' => 'click',
       ],
     ];
+    $form['database'] = [
+      '#type' => 'markup',
+      '#markup' => '<div class="database"></div>',
+    ];
     return $form;
   }
 
@@ -81,9 +85,7 @@ class FirstForm extends FormBase {
     $mail = $form_state->getValue('email');
     $email_exp = '/^[A-Za-z._-]+@[A-Za-z.-]+\.[A-Za-z]{2,4}$/';
     $image = $form_state->getValue('image');
-    $fid = $form_state->getValue(['image', 0]);
 
-    $connect = Database::getConnection();
 
     if (empty($image)) {
       $response->addCommand(
@@ -95,15 +97,6 @@ class FirstForm extends FormBase {
       );
     }
     else {
-      $response->addCommand(
-        new HtmlCommand(
-          '.message',
-          '<div class="valid_message">' . $this->t(
-            'Your cat name is @name',
-            ['@name' => $form_state->getValue('input')]
-          ) . '</div>'
-        )
-      );
       if (!preg_match($email_exp, $mail)) {
         $response->addCommand(
           new HtmlCommand(
@@ -142,16 +135,25 @@ class FirstForm extends FormBase {
               ) . '</div>'
             )
           );
-          $connect->insert('borg')->fields([
-            'cat_name' => $form_state->getValue('input'),
-            'email' => $form_state->getValue('email'),
-            'image' => $fid,
-            'time' => time(),
-          ])->execute();
+          $this->DatabaseInput($form_state);
         }
       }
     }
     return $response;
+  }
+
+  public function DatabaseInput(FormStateInterface $form_state) {
+    $connect = Database::getConnection();
+    $fid = $form_state->getValue(['image', 0]);
+    $file = File::load($fid);
+    $file->setPermanent();
+    $file->save();
+    $connect->insert('borg')->fields([
+      'cat_name' => $form_state->getValue('input'),
+      'email' => $form_state->getValue('email'),
+      'image' => $fid,
+      'time' => time(),
+    ])->execute();
   }
 
   public function EmailValidate(array &$form, FormStateInterface $form_state) {

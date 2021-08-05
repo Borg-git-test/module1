@@ -3,6 +3,7 @@
 namespace Drupal\borg\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\borg\Form\DatabaseOutput;
 
 class MyController extends ControllerBase {
 
@@ -30,11 +31,18 @@ class MyController extends ControllerBase {
     return $forma;
   }
 
+  public function database() {
+    $output = new DatabaseOutput();
+    $outputs = $output->DatabaseOutput();
+    return $outputs;
+  }
+
   public function myNewPage() {
 
     return [
       $this->text(),
       $this->form(),
+      $this->database(),
     ];
   }
 
