@@ -38,11 +38,11 @@ class MyController extends ControllerBase {
   }
 
   public function myNewPage() {
-
     return [
-      $this->text(),
-      $this->form(),
-      $this->database(),
+      '#theme' => 'borg_cats',
+      '#text' => $this->text(),
+      '#form' => $this->form(),
+      '#element' => $this->database(),
     ];
   }
 

@@ -1,0 +1,11 @@
+<?php
+
+
+function borg_theme() {
+  return [
+    'borg_cats' => [
+      'variables' => ['text' => '', 'form' => [], 'element' => [],],
+    ],
+  ];
+}
+

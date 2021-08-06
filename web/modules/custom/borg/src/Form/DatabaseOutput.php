@@ -26,18 +26,11 @@ class DatabaseOutput extends Database {
       ];
       $renderer = \Drupal::service('renderer');
       $value['image'] = $renderer->render($value['image']);
-      $value['time'] = date('j F Y H:i:s', $value['time']);
+      $value['time'] = date('j/F/Y H:i:s', $value['time']);
       $rows[$i] = $value;
       $i += 1;
     }
-    $content = [
-      '#type' => 'table',
-      '#rows' => $rows,
-      '#attributes' => [
-        'class' => 'my-custom-table',
-      ],
-    ];
-    return $content;
+    return $rows;
   }
 
 }
