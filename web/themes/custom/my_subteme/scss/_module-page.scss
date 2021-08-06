@@ -102,5 +102,46 @@
         }
       }
     }
+    .my-custom-table {
+      margin-top: 50px;
+      tbody {
+        display: flex;
+        flex-wrap: wrap;
+        tr {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin-inline: auto;
+          margin-block: 35px;
+          td {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            &:first-child {
+              height: 350px;
+            }
+            .img-responsive {
+              height: 100%;
+            }
+            &:nth-child(2) {
+              font-size: 20px;
+              text-transform: uppercase;
+            }
+            &:nth-last-child(2) {
+              font-size: 18px;
+              color: #0a65aa;
+            }
+            &:last-child {
+              font-size: 14px;
+              color: #000000;
+            }
+          }
+        }
+      }
+      & > tbody > tr:nth-of-type(odd), & > tbody > tr:nth-of-type(even) {
+        background-color: inherit;
+      }
+    }
   }
 }

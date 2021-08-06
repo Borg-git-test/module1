@@ -105,4 +105,45 @@
   padding: 10px;
   border-radius: 5px;
 }
+.cats-module .cats-module-section .my-custom-table {
+  margin-top: 50px;
+}
+.cats-module .cats-module-section .my-custom-table tbody {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cats-module .cats-module-section .my-custom-table tbody tr {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-inline: auto;
+  margin-block: 35px;
+}
+.cats-module .cats-module-section .my-custom-table tbody tr td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.cats-module .cats-module-section .my-custom-table tbody tr td:first-child {
+  height: 350px;
+}
+.cats-module .cats-module-section .my-custom-table tbody tr td .img-responsive {
+  height: 100%;
+}
+.cats-module .cats-module-section .my-custom-table tbody tr td:nth-child(2) {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.cats-module .cats-module-section .my-custom-table tbody tr td:nth-last-child(2) {
+  font-size: 18px;
+  color: #0a65aa;
+}
+.cats-module .cats-module-section .my-custom-table tbody tr td:last-child {
+  font-size: 14px;
+  color: #000000;
+}
+.cats-module .cats-module-section .my-custom-table > tbody > tr:nth-of-type(odd), .cats-module .cats-module-section .my-custom-table > tbody > tr:nth-of-type(even) {
+  background-color: inherit;
+}
 /*# sourceMappingURL=style.css.map */
