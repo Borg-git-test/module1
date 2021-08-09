@@ -24,6 +24,7 @@ class DatabaseOutput extends Database {
         '#style_name' => 'large',
         '#uri' => $file->getFileUri(),
       ];
+      $value['image_url'] = file_create_url($file->getFileUri());
       $renderer = \Drupal::service('renderer');
       $value['image'] = $renderer->render($value['image']);
       $value['time'] = date('j/F/Y H:i:s', $value['time']);

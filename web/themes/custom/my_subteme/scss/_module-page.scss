@@ -103,20 +103,27 @@
         }
       }
     }
-    .database {
+    .cats_database {
       margin-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
       .cats_element {
+        margin-bottom: 50px;
+        margin-inline: auto;
         .image {
           height: 350px;
           display: flex;
           justify-content: center;
           align-items: center;
-          //.img-responsive {
-          //  height: 100%;
-          //}
+          .img-responsive {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
         }
         .cats_info {
           text-align: center;
+          margin-top: 10px;
           .cat_name {
             font-size: 20px;
             text-transform: uppercase;

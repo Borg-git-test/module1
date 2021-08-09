@@ -106,27 +106,39 @@
   padding: 10px;
   border-radius: 5px;
 }
-.cats-module .cats-module-section .database {
+.cats-module .cats-module-section .cats_database {
   margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
 }
-.cats-module .cats-module-section .database .cats_element .image {
+.cats-module .cats-module-section .cats_database .cats_element {
+  margin-bottom: 50px;
+  margin-inline: auto;
+}
+.cats-module .cats-module-section .cats_database .cats_element .image {
   height: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.cats-module .cats-module-section .database .cats_element .cats_info {
-  text-align: center;
+.cats-module .cats-module-section .cats_database .cats_element .image .img-responsive {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
-.cats-module .cats-module-section .database .cats_element .cats_info .cat_name {
+.cats-module .cats-module-section .cats_database .cats_element .cats_info {
+  text-align: center;
+  margin-top: 10px;
+}
+.cats-module .cats-module-section .cats_database .cats_element .cats_info .cat_name {
   font-size: 20px;
   text-transform: uppercase;
 }
-.cats-module .cats-module-section .database .cats_element .cats_info .email {
+.cats-module .cats-module-section .cats_database .cats_element .cats_info .email {
   font-size: 18px;
   color: #0a65aa;
 }
-.cats-module .cats-module-section .database .cats_element .cats_info .time {
+.cats-module .cats-module-section .cats_database .cats_element .cats_info .time {
   font-size: 14px;
   color: #000000;
 }
