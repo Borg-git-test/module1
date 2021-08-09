@@ -142,4 +142,11 @@
   font-size: 14px;
   color: #000000;
 }
+.cats-module .cats-module-section .cats_database .cats_element .cats_info .button {
+  margin: 0 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  outline: none;
+}
 /*# sourceMappingURL=style.css.map */

@@ -20,7 +20,12 @@
       <p class="cat_name">{{ elements.cat_name }}</p>
       <p class="email">{{ elements.email }}</p>
       <p class="time">{{ elements.time }}</p>
-      <p class="time">{{ elements.timer }}</p>
+      {% if user.hasPermission('administer nodes') %}
+        {{ elements.delete }}
+        {{ elements.update }}
+{#        <input type="button" class="button delete btn btn-danger" value="delete">#}
+{#        <input type="button" class="button update btn btn-warning" value="update">#}
+      {% endif %}
     </div>
   </div>
 {% endfor %}
