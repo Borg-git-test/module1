@@ -22,9 +22,7 @@
       <p class="time">{{ elements.time }}</p>
       {% if user.hasPermission('administer nodes') %}
       <a href="/borg/form/delete/{{ elements.id }}" class="use-ajax" data-dialog-type="modal">{{ elements.delete }}</a>
-      <a href="#">{{ elements.update }}</a>
-{#        <input type="button" class="button delete btn btn-danger" value="{{ 'delete'|t }}">#}
-{#        <input type="button" class="button update btn btn-warning" value="update">#}
+      <a href="/borg/form/update/{{ elements.id }}" class="use-ajax" data-dialog-type="modal">{{ elements.update }}</a>
       {% endif %}
     </div>
   </div>

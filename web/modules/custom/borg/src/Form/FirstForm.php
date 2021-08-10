@@ -69,10 +69,6 @@ class FirstForm extends FormBase {
         'event' => 'click',
       ],
     ];
-    $form['database'] = [
-      '#type' => 'markup',
-      '#markup' => '<div class="database"></div>',
-    ];
     return $form;
   }
 

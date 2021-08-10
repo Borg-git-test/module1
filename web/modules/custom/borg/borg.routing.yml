@@ -12,3 +12,11 @@ borg.delete_form:
     _title: 'DeleteButton'
   requirements:
     _permission: 'administer nodes'
+
+borg.update_form:
+  path: '/borg/form/update/{id}'
+  defaults:
+    _form: '\Drupal\borg\Form\UpdateButton'
+    _title: 'UpdateButton'
+  requirements:
+    _permission: 'administer nodes'
