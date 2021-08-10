@@ -4,7 +4,6 @@ namespace Drupal\borg\Form;
 
 use Drupal\Core\Database\Database;
 use Drupal\file\Entity\File;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class DatabaseOutput extends Database {
 
@@ -35,9 +34,6 @@ class DatabaseOutput extends Database {
         '#attributes' => [
           'class' => ['btn-danger'],
         ],
-        '#ajax' => [
-          'callback' => '::deleteElement',
-        ],
       ];
       $value['update'] = [
         '#type' => 'submit',
@@ -45,26 +41,15 @@ class DatabaseOutput extends Database {
         '#attributes' => [
           'class' => ['btn-warning'],
         ],
-        '#ajax' => [
-          'callback' => '::updateElement',
-        ],
       ];
-//      $value['delete'] = $this->delete();
       $rows[$i] = $value;
       $i += 1;
     }
     return $rows;
   }
 
-//  public function deleteElement($entry) {
-//    $connect = Database::getConnection();
-//    $connect->delete('borg')
-//      ->condition('id', $entry)
-//      ->execute();
-//  }
-//  public function delete() {
-//    $delete = \Drupal::formBuilder()->getForm('Drupal\borg\Form\DeleteButton');
-////    $delete = \Drupal::formBuilder()->getForm('\Drupal\borg\Form\FirstForm');
-//    return $delete;
-//  }
+  public function delete() {
+    $delete = \Drupal::formBuilder()->getForm('\Drupal\borg\Form\DeleteButton');
+    return $delete;
+  }
 }

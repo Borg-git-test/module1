@@ -149,4 +149,7 @@
   padding: 8px 15px;
   outline: none;
 }
+.cats-module .cats-module-section .cats_database .cats_element .cats_info a {
+  text-decoration: none;
+}
 /*# sourceMappingURL=style.css.map */

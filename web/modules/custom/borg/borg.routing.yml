@@ -6,9 +6,9 @@ borg.cats:
     _permission: 'access content'
 
 borg.delete_form:
-  path: '/borg/form/{id}/delete'
+  path: '/borg/form/delete/{id}'
   defaults:
     _form: '\Drupal\borg\Form\DeleteButton'
     _title: 'DeleteButton'
   requirements:
-    _access: 'TRUE'
+    _permission: 'administer nodes'

@@ -21,9 +21,9 @@
       <p class="email">{{ elements.email }}</p>
       <p class="time">{{ elements.time }}</p>
       {% if user.hasPermission('administer nodes') %}
-        {{ elements.delete }}
-        {{ elements.update }}
-{#        <input type="button" class="button delete btn btn-danger" value="delete">#}
+      <a href="/borg/form/delete/{{ elements.id }}">{{ elements.delete }}</a>
+      <a href="#">{{ elements.update }}</a>
+{#        <input type="button" class="button delete btn btn-danger" value="{{ 'delete'|t }}">#}
 {#        <input type="button" class="button update btn btn-warning" value="update">#}
       {% endif %}
     </div>
