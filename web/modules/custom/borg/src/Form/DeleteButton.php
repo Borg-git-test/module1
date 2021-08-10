@@ -16,7 +16,7 @@ class DeleteButton extends ConfirmFormBase {
   public $cid;
 
   public function getQuestion() {
-    return 'Do you want to delete ' . "$this->cid";
+    return t('Do you want to delete %id' , ['%id' => $this->cid]);
   }
   public function getCancelUrl() {
     return new Url('borg.cats');

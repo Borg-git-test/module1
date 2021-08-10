@@ -152,4 +152,36 @@
 .cats-module .cats-module-section .cats_database .cats_element .cats_info a {
   text-decoration: none;
 }
+
+.ui-dialog .ui-dialog-titlebar {
+  display: flex;
+  align-items: center;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+  position: relative;
+  margin: 0;
+  right: -10px;
+}
+.ui-dialog .ui-dialog-titlebar-close:after {
+  content: "x";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 18px;
+  line-height: 1;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .button {
+  outline: none;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
 /*# sourceMappingURL=style.css.map */
