@@ -6,6 +6,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Form\ConfirmFormBase;
+use Drupal\file\Entity\File;
 
 class DeleteButton extends ConfirmFormBase {
 
@@ -45,6 +46,16 @@ class DeleteButton extends ConfirmFormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $connect = Database::getConnection();
+
+    $output = $connect->select('borg', 'x')
+      ->fields('x', ['image'])
+      ->condition('id', $this->cid)
+      ->execute();
+    $fid = $output->fetchAssoc();
+    $file = File::load($fid['image']);
+    $file->setTemporary();
+    $file->delete();
+
     $connect->delete('borg')
       ->condition('id', $this->cid)
       ->execute();
