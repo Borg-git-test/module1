@@ -3,11 +3,13 @@
 namespace Drupal\borg\Form;
 
 use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\CssCommand;
 use Drupal\Core\Database\Database;
+use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 
 
@@ -122,16 +124,14 @@ class FirstForm extends FormBase {
           );
         }
         else {
-          $response->addCommand(
-            new HtmlCommand(
-              '.message',
-              '<div class="valid_message">' . $this->t(
-                'Your cat name is @name',
-                ['@name' => $form_state->getValue('input')]
-              ) . '</div>'
-            )
-          );
+          $this->messenger()->addMessage($this->t(
+                          'Your cat name is @name',
+                          ['@name' => $form_state->getValue('input')]
+                        ));
           $this->DatabaseInput($form_state);
+          $url = Url::fromRoute('borg.cats');
+          $command = new RedirectCommand($url->toString());
+          $response->addCommand($command);
         }
       }
     }

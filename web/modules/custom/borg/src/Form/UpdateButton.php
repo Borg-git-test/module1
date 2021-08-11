@@ -149,6 +149,13 @@ class UpdateButton extends FormBase {
 
   public function DatabaseUpdate(FormStateInterface $form_state) {
     $connect = Database::getConnection();
+
+    $output = $connect->select('borg', 'x')
+      ->fields('x', ['image'])
+      ->condition('id', $this->cid)
+      ->execute();
+    $fid_del = $output->fetchAssoc();
+
     $fid = $form_state->getValue(['imaged', 0]);
     $file = File::load($fid);
     $file->setPermanent();
@@ -159,6 +166,12 @@ class UpdateButton extends FormBase {
       'image' => $fid,
     ])->condition('id', $this->cid)
       ->execute();
+
+    if ($fid != $fid_del['image']) {
+      $file_del = File::load($fid_del['image']);
+      $file_del->setTemporary();
+      $file_del->delete();
+    }
   }
 
 }
