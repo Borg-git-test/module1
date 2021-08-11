@@ -6,6 +6,9 @@ function borg_theme() {
     'borg_cats' => [
       'variables' => ['text' => '', 'form' => [], 'element' => [],],
     ],
+    'borg_cats_list' => [
+      'variables' => ['text' => '', 'element' => [],],
+    ],
   ];
 }
 

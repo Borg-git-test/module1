@@ -138,8 +138,8 @@ class UpdateButton extends FormBase {
         else {
           $this->DatabaseUpdate($form_state);
           $this->messenger()->addMessage($this->t("succesfully updated"));
-          $url = Url::fromRoute('borg.cats');
-          $command = new RedirectCommand($url->toString());
+          $path = $_SERVER["HTTP_REFERER"];
+          $command = new RedirectCommand($path);
           $response->addCommand($command);
         }
       }

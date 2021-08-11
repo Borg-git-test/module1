@@ -20,3 +20,10 @@ borg.update_form:
     _title: 'UpdateButton'
   requirements:
     _permission: 'administer nodes'
+
+borg.cats_list:
+  path: '/admin/structure/borg/cats_list'
+  defaults:
+    _controller: '\Drupal\borg\Controller\CatsListController::myAdminPage'
+  requirements:
+    _permission: 'administer nodes'
