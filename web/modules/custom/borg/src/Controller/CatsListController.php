@@ -18,25 +18,24 @@ class CatsListController extends ControllerBase {
     $text = [
       '#type' => 'html_tag',
       '#tag' => 'p',
-      '#value' => $this->t('Hello! Here you can delete or update any cats.'),
+      '#value' => $this->t('Here you can delete or update any cats.'),
       '#attributes' => [
-        'class' => ['text'],
+        'class' => ['title'],
       ],
     ];
     return $text;
   }
 
-  public function database() {
-    $output = new DatabaseOutput();
-    $outputs = $output->DatabaseOutput();
-    return $outputs;
+  public function form() {
+    $forma = \Drupal::formBuilder()->getForm('Drupal\borg\Form\CatsListForm');
+    return $forma;
   }
 
   public function myAdminPage() {
     return [
       '#theme' => 'borg_cats_list',
       '#text' => $this->text(),
-      '#element' => $this->database(),
+      '#element' => $this->form(),
     ];
   }
 

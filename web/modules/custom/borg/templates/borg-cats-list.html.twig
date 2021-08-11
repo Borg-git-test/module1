@@ -1,29 +1,30 @@
 <div class="cats-list-content">
-{{ text }}
-<table>
-<tbody class="cats_database">
-<th>{{ 'image'|t }}</th>
-<th>{{ 'cat name'|t }}</th>
-<th>{{ 'email'|t }}</th>
-<th>{{ 'add time'|t }}</th>
-<th>{{ 'update'|t }}</th>
-<th>{{ 'delete'|t }}</th>
-<th>{{ 'select'|t }}</th>
-{% for elements in element %}
-      <tr class="cats_element col-lg-6 col-md-6 col-sm-10 col-xs-12">
-        <td class="image">
-    <a href="{{ elements.image_url }}" target="_blank">
-        {{ elements.image }}
-    </a>
-        </td>
-      <td class="cat_name">{{ elements.cat_name }}</td>
-      <td class="email">{{ elements.email }}</td>
-      <td class="time">{{ elements.time }}</td>
-        <td><a href="/borg/form/update/{{ elements.id }}" class="use-ajax" data-dialog-type="modal">{{ elements.update }}</a></td>
-        <td><a href="/borg/form/delete/{{ elements.id }}" class="use-ajax" data-dialog-type="modal">{{ elements.delete }}</a></td>
-        <td></td>
-  </tr>
-{% endfor %}
-</tbody>
-</table>
+{#<table>#}
+{#<tbody class="cats_database">#}
+{#<th>{{ 'image'|t }}</th>#}
+{#<th>{{ 'cat name'|t }}</th>#}
+{#<th>{{ 'email'|t }}</th>#}
+{#<th>{{ 'add time'|t }}</th>#}
+{#<th>{{ 'update'|t }}</th>#}
+{#<th>{{ 'delete'|t }}</th>#}
+{#<th>{{ 'select'|t }}</th>#}
+
+{#{% for elements in element %}#}
+{#      <tr class="cats_element col-lg-6 col-md-6 col-sm-10 col-xs-12">#}
+{#        <td class="image">#}
+{#    <a href="{{ elements.image_url }}" target="_blank">#}
+{#        {{ elements.image }}#}
+{#    </a>#}
+{#        </td>#}
+{#      <td class="cat_name">{{ elements.cat_name }}</td>#}
+{#      <td class="email">{{ elements.email }}</td>#}
+{#      <td class="time">{{ elements.time }}</td>#}
+{#        <td><a href="/borg/form/update/{{ elements.id }}" class="use-ajax" data-dialog-type="modal">{{ elements.update }}</a></td>#}
+{#        <td><a href="/borg/form/delete/{{ elements.id }}" class="use-ajax" data-dialog-type="modal">{{ elements.delete }}</a></td>#}
+{#        <td>{{ elements.select }}</td>#}
+{#  </tr>#}
+{#{% endfor %}#}
+{{ element }}
+{#</tbody>#}
+{#</table>#}
 </div>

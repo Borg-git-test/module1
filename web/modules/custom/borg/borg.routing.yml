@@ -27,3 +27,11 @@ borg.cats_list:
     _controller: '\Drupal\borg\Controller\CatsListController::myAdminPage'
   requirements:
     _permission: 'administer nodes'
+
+borg.delete_all_form:
+  path: '/borg/form/delete_all'
+  defaults:
+    _form: '\Drupal\borg\Form\DeleteAllButton'
+    _title: 'DeleteAllButton'
+  requirements:
+    _permission: 'administer nodes'

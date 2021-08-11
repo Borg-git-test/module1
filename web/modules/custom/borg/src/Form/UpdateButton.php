@@ -9,7 +9,6 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Database\Database;
 use Drupal\file\Entity\File;
-use Drupal\Core\Url;
 
 class UpdateButton extends FormBase {
 
@@ -70,7 +69,7 @@ class UpdateButton extends FormBase {
 
     $form['submited'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Add cat'),
+      '#value' => $this->t('Update'),
       '#ajax' => [
         'callback' => '::addMessageAjax',
         'event' => 'click',
