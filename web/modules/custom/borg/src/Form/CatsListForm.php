@@ -42,7 +42,7 @@ class CatsListForm extends FormBase {
       $value['image_url'] = file_create_url($file->getFileUri());
       $renderer = \Drupal::service('renderer');
       $value['image'] = $renderer->render($value['image']);
-      $value['time'] = date('j/F/Y H:i:s', $value['time']);
+      $value['time'] = date('j/M/Y H:i:s', $value['time']);
       $id = $value['id'];
       $value['delete'] = [
         '#type' => 'link',
@@ -59,7 +59,7 @@ class CatsListForm extends FormBase {
         '#title' => $this->t('update'),
         '#attributes' => [
           'data-dialog-type' => ['modal'],
-          'class' => ['button', 'use-ajax', 'btn-danger', 'btn'],
+          'class' => ['button', 'use-ajax', 'btn-info', 'btn'],
         ],
       ];
       $value['update'] = $renderer->render($value['update']);

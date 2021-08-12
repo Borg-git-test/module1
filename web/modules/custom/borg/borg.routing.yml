@@ -22,7 +22,7 @@ borg.update_form:
     _permission: 'administer nodes'
 
 borg.cats_list:
-  path: '/admin/structure/borg/cats_list'
+  path: '/borg/cats_list'
   defaults:
     _controller: '\Drupal\borg\Controller\CatsListController::myAdminPage'
   requirements:
