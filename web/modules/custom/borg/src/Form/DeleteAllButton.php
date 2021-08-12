@@ -2,9 +2,11 @@
 
 namespace Drupal\borg\Form;
 
+use Drupal\Core\Database\Database;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Form\ConfirmFormBase;
+use Drupal\file\Entity\File;
 
 class DeleteAllButton extends ConfirmFormBase {
 
@@ -15,7 +17,7 @@ class DeleteAllButton extends ConfirmFormBase {
   public $cid = [];
 
   public function getQuestion() {
-    return t('Do you want to delete %id' , ['%id' => $this->cid]);
+    return t('Do you want to delete!');
   }
   public function getCancelUrl() {
     return Url::fromUri($_SERVER["HTTP_REFERER"]);
@@ -43,11 +45,25 @@ class DeleteAllButton extends ConfirmFormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
-    $submit = new CatsListForm;
-    $submit->submitForm();
+    $connect = Database::getConnection();
+    $value = $_SESSION['del_id'];
+    foreach ($value as $key) {
+      $output = $connect->select('borg', 'x')
+        ->fields('x', ['image'])
+        ->condition('id', $key)
+        ->execute();
+      $fid = $output->fetchAssoc();
+      $file = File::load($fid['image']);
+      $file->setTemporary();
+      $file->delete();
+
+      $connect->delete('borg')
+        ->condition('id', $key)
+        ->execute();
+    }
 
     $this->messenger()->addMessage($this->t("succesfully deleted"));
-    $form_state->setRedirectUrl(Url::fromUri($_SERVER["HTTP_REFERER"]));
+    $form_state->setRedirectUrl(Url::fromRoute('borg.cats_list'));
   }
 
 }

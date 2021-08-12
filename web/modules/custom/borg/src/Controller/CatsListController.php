@@ -3,7 +3,6 @@
 namespace Drupal\borg\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\borg\Form\DatabaseOutput;
 
 class CatsListController extends ControllerBase {
 
